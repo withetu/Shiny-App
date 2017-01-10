@@ -6,7 +6,7 @@
 ## Or by just clicking the “Run App” button at the top of the editor which is the safest solution.
 
 #Create an empty app with a blank user-interface.
-shinyServer(function(inout, output){
+shinyServer(function(input, output){
   
 })
 

@@ -5,22 +5,12 @@
 ## runApp("Shiny App")
 ## Or by just clicking the “Run App” button at the top of the editor which is the safest solution.
 
-library(shiny)
-
 #Create an empty app with a blank user-interface.
 #Shiny ui.R scripts use the function fluidPage() to create a display that automatically adjusts to the dimensions of your user’s browser window. You lay out your app by placing elements in the fluidPage() function.
 #For example, the ui.R script below creates a user-interface that has a title panel and then a sidebar layout, which includes a sidebar panel and a main panel. Note that these elements are placed within the fluidPage() function.
 #The TitlePanel() and sidebarLayout() are the two most used elements to add to fluidPage(). They create a basic Shiny app with a sidebar.
 #The sidebarLayout() always takes two arguments: sidebarPanel function output and mainPanel function output.
 #Create titlePanel(), name it “Shiny App” and sidebarLayout(). Do not forget to add sidebarPanel() and mainPanel() inside this.
-shinyUI(fluidPage(
-  titlePanel("Shiny App"),
-  
-  sidebarLayout(
-    sidebarPanel(),
-    mainPanel()
-  )
-))
 
 #HTML Content
 #You can add content to your Shiny app by placing it inside a *Panel function.
@@ -31,14 +21,6 @@ shinyUI(fluidPage(
   #Put h1("Title") as an argument to titlePanel(), sidebarPanel(), or mainPanel().
 #The text will appear in the corresponding panel of your web page. You can place multiple elements in the same panel if you separate them with a comma.
 #Create an HTML element to add the title “Menu” in the sidebarPanel() and “Main” in mainPanel() with one of Shiny’s tag functions. HINT: Use h1,h2.
-shinyUI(fluidPage(
-  titlePanel("Shiny App"),
-  
-  sidebarLayout(
-    sidebarPanel(h2("Menu")),
-    mainPanel("Main")
-  )
-))
 
 #FORMATTED TEXT
 #Shiny offers many tag functions for formatting text.Take a look:
@@ -55,5 +37,33 @@ shinyUI(fluidPage(
 #strong: Bold text
 #em: Italicized text
 
+# Add a paragraph in your mainPanel() with a description about the app you are going to make.”This famous (Fisher’s or Anderson’s) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.” Use an HTML tag format. HINT:Use p.
 
+#Link the word “iris” in the mainPanel() with this hyperlink “http://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html”. HINT: Use a.
+
+#Add the title “Analysis” under the desciption paragraph of your mainPanel. Do not forget the comma separation. HINT: Use br and h2.
+
+#Use bold text to the words “Iris setosa”,”versicolor” and “virginica”. HINT: Use strong.
+
+#IMAGES
+#Images can improve the appearance of your app and help users understand the content. Shiny uses img() function to put image files in your app. To insert an image, give the img() function the name of your image file as the src argument (e.g., img(src = "my_image.png")). You can also include other HTML parameters such as height and width. For example:
+#  img(src = "my_image.png", height = 68, width = 68)
+#  The img() function looks for your image file in a specific place. Your file must be in a folder named “www” in the same directory as the ui.R script. Shiny will share any file placed here with your user’s web browser, which makes “www” a great place to put images, style sheets, and other things the browser will need to build the web components of your Shiny app. 
+
+#Download this image and place it in a folder labeled “www” within your “Shiny App” directory. Name it “petal”, add .jpg extension and then call the img function inside the sidebarPanel(). Use height and width to decide its dimensions.
+library(shiny)
+shinyUI(fluidPage(
+  titlePanel("Shiny App"),
+  
+  sidebarLayout(
+    sidebarPanel(h2("Main"),
+                 img(src="petal.jpg", height=72, width=100)),
+    mainPanel(h1("Menu"),
+              p("This famous (Fisher’s or Anderson’s)",a("iris", href="http://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html"),"data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are ",strong("Iris setosa"), strong("versicolor"),"and", strong("virginica.")),
+              br(),
+              h2("Analysis")
+              )
+  )
+  
+))
 
