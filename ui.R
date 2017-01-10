@@ -1,4 +1,6 @@
 ##               http://r-exercises.com/2016/12/12/building-shiny-app-exercises-part-1/
+##               http://r-exercises.com/2016/12/18/building-shiny-app-exercises-part-2/
+
 
 ## You can run a Shiny app by giving the name of its directory to the function runApp(). For example if your Shiny app is in a directory called “Shiny App”, run it with the following code:
 ## library(shiny)
@@ -66,4 +68,29 @@ shinyUI(fluidPage(
   )
   
 ))
+
+
+
+##  ADD CONTROL WIDGETS
+##In the second part of our series we will see how to add control widgets in our Shiny app. Widget is a web element that our users can interact with. The widgets provided by Shiny are:
+#FUNCTIONS
+#actionButton: Action Button
+#checkboxGroupInput: A group of check boxes
+#checkboxInput: A single check box
+#dateInput: A calendar for date selection
+#dateRangeInput: A pair of calendars for selecting a date range
+#fileInput: A file upload control wizard
+#helpText: Help text that can be added to an input form
+#numericInput: A field to enter numbers
+#radioButtons: A set of radio buttons
+#selectInput: A box with choices to select from
+#sliderInput: A slider bar
+#submitButton: A submit button
+#textInput: A field to enter text
+
+#ADDING WIDGETS
+#To add a widget to your app, place a widget function in sidebarPanel or in mainPanel in our ui.R file.
+
+
+  
 
