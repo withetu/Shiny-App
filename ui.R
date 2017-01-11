@@ -1,5 +1,6 @@
 ##               http://r-exercises.com/2016/12/12/building-shiny-app-exercises-part-1/
 ##               http://r-exercises.com/2016/12/18/building-shiny-app-exercises-part-2/
+##               http://r-exercises.com/2016/12/25/building-shiny-app-exercises-part-3/
 
 
 ## You can run a Shiny app by giving the name of its directory to the function runApp(). For example if your Shiny app is in a directory called “Shiny App”, run it with the following code:
@@ -173,6 +174,25 @@
 #})
 
 #Under the dateRangeInput place a fileInput. Name it “file” and give it the label “File Input”.
+
+#Use the function fluidrow to make sure that all the elements we are going to use will be in the same line. To do this put fluidrow just under the “Menu” in your sidebarPanel and close its parenthesis just before the submibutton (excluding the two br).
+
+#HELP TEXT
+#In the example below we create a UI with a helpText.
+# ui.R
+#shinyUI(fluidPage(
+#titlePanel("Widgets"),
+#h3("Help Text"),
+#helpText("Text that is used to provide some extra details to the user.")))
+
+# server.R
+#shinyServer(function(input, output) {
+#})
+
+#Place a helpText exactly under the actionButton, name it “Help Text” and as text add:”For help”. Hint: Use h4.
+
+#Now use column function in order to decide the column width for every row and put the two widgets in the same line. To do this place the column function twice. Firstly place it just before the “Actionbutton” title with width = 6 and close its parenthesis exactly after the label “Perform”. Do the same for the helpInput. Both of the column functions must be inside the same fluidrow.
+
 library(shiny)
 shinyUI(fluidPage(
   titlePanel("Shiny App"),
@@ -181,8 +201,13 @@ shinyUI(fluidPage(
     sidebarPanel(
       h2("Menu"),
       br(),
-      h4("ActionButton"),
-      actionButton("per", label = "Perform"),
+      fluidRow(
+        column(6,
+        h4("ActionButton"),
+        actionButton("per", label = "Perform")),
+        column(6,
+        h4("Help Text"),
+        helpText("Just For Help"))),
       br(),
       h4("SubmitButton"),
       submitButton("Submit"),
@@ -214,4 +239,19 @@ shinyUI(fluidPage(
   )
   
 ))
+
+#NUMERIC INPUT
+#In the example below we create a UI with a numericInput.
+# ui.R
+#shinyUI(fluidPage(
+#titlePanel("Widgets"),
+#numericInput("num",
+#label = h3("Numeric Input"),
+#value = 1)
+#))
+# server.R
+#shinyServer(function(input, output) {
+#})
+
+#Put a numericInput under helpText,in the same row with submitButton. Name it “numer”, give it “Numeric Input” as label and value = 10. Hint: Use h4, fluidrow and column.
 
