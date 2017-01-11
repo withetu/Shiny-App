@@ -53,21 +53,6 @@
 #  The img() function looks for your image file in a specific place. Your file must be in a folder named “www” in the same directory as the ui.R script. Shiny will share any file placed here with your user’s web browser, which makes “www” a great place to put images, style sheets, and other things the browser will need to build the web components of your Shiny app. 
 
 #Download this image and place it in a folder labeled “www” within your “Shiny App” directory. Name it “petal”, add .jpg extension and then call the img function inside the sidebarPanel(). Use height and width to decide its dimensions.
-library(shiny)
-shinyUI(fluidPage(
-  titlePanel("Shiny App"),
-  
-  sidebarLayout(
-    sidebarPanel(h2("Main"),
-                 img(src="petal.jpg", height=72, width=100)),
-    mainPanel(h1("Menu"),
-              p("This famous (Fisher’s or Anderson’s)",a("iris", href="http://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html"),"data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are ",strong("Iris setosa"), strong("versicolor"),"and", strong("virginica.")),
-              br(),
-              h2("Analysis")
-              )
-  )
-  
-))
 
 
 
@@ -91,6 +76,142 @@ shinyUI(fluidPage(
 #ADDING WIDGETS
 #To add a widget to your app, place a widget function in sidebarPanel or in mainPanel in our ui.R file.
 
+#Open the app you created in part 1 and move the image from sidebarPanel to mainPanel, leave two rows under the title “Main”, put the image there and change its dimensions to: height = 150 and width = 200. HINT: Use br.
 
+#BUTTONS
+#In the example below we create a UI with a submitButton and an actionButton. Please note that we use the function fluidrow to make sure that all the elements we are going to use will be in the same line as we are going to need this in the next parts:
+  # ui.R
+  #shinyUI(fluidPage(
+    #titlePanel(“Widgets”),
+    
+    #fluidRow(h3(“Buttons”),
+             #actionButton(“action”, label = “Action”),
+             #br(),
+             #br(),
+             #submitButton(“Submit”))))
+
+# server.R
+#shinyServer(function(input, output) {
+#})
+
+#Leave a row and place an actionButton under the title “Menu” in sidebarPanel, give it the title “Actionbutton”, name = “per” and label = “Perform”. HINT: Use br and h4.
+
+#Leave a row from the actionButton you just placed and add a submitButton with title = “Submitbutton” and name = “Submit”. HINT: Use br and h4.
+
+#SINGLE CHECKBOX
+#In the example below we create a UI with a single Checkbox:
+  # ui.R
+  #shinyUI(fluidPage(
+    #titlePanel(“Widgets”),
+    
+    #fluidRow(h3(“Single checkbox”),
+             #checkboxInput(“checkbox”, label = “Choice A”, value = TRUE))))
+
+#server.R
+#shinyServer(function(input, output) {
+#}) 
+
+#Add a checkboxInput in the sidebarPanel under the submitButton, put as title “Single Checkbox”, name it “checbox”, name the label “Choice A” and set the value to “TRUE”. HINT: Use h4.
+
+#Change the value to “FALSE” to understand the difference.
+
+#CHECKBOX GROUP
+#In the example below we create a UI with a Checkbox Group:
+  #ui.R
+  #shinyUI(fluidPage(
+    #checkboxGroupInput(“checkGroup”,
+                        #label = h3(“Checkbox group”),
+#choices = list(“Choice 1” = 1,
+#“Choice 2” = 2, “Choice 3” = 3),
+#selected = 2)
+#))
+#server.R
+#shinyServer(function(input, output) {
+#})
+
+#Place a checkboxGroupInput under the checkboxInput, give it title “Checkbox Group”, name it “checkGroup”, name the label “Checkbox Group” and give it 3 choices. HINT: Use h4
+
+#Make the second of the choicesthe default one.
+
+#DATE INPUT
+#In the example below we create a UI with a Date Input:
+  #ui.R
+#shinyUI(fluidPage(
+#dateInput(“date”,
+#label = h3(“Date input”),
+#value = “2016-12-07”)
+#))
+
+#server.R
+#shinyServer(function(input, output) {
+#})
+
+#Under the checkboxGroupInput add a dateInput with name = “date”, label = “Date Input” and value = “2016-12-01”.
+
+#DATE RANGE
+#In the example below we create a UI with a Date Range Input:
+  #ui.R
+#shinyUI(fluidPage(
+#dateRangeInput(“dates”, label = h3(“Date range”))
+#))
+
+#server.R
+#shinyServer(function(input, output) {
+#})
+
+#Under the dateInput place a dateRangeInput with name = “dates” and label = “Date Range”. HINT: Use h4.
+
+#FILE INPUT
+#In the example below we create a UI with a File Input.
+#ui.R
+#shinyUI(fluidPage(
+#fileInput(“file”, label = h3(“File input”))
+#))
+
+#server.R
+#shinyServer(function(input, output) {
+#})
+
+#Under the dateRangeInput place a fileInput. Name it “file” and give it the label “File Input”.
+library(shiny)
+shinyUI(fluidPage(
+  titlePanel("Shiny App"),
   
+  sidebarLayout(
+    sidebarPanel(
+      h2("Menu"),
+      br(),
+      h4("ActionButton"),
+      actionButton("per", label = "Perform"),
+      br(),
+      h4("SubmitButton"),
+      submitButton("Submit"),
+      br(),
+      h4("Single Checkbox"),
+      checkboxInput("checkbox", label = "Choice A", value = TRUE),
+      checkboxGroupInput("checkGroup",
+                         label = h4("Checkbox Group"),
+                         choices = list("Choice 1"=1,
+                                        "Choice 2"=2,
+                                        "Choice 3"=3),
+                         selected = 2),
+      dateInput("date", 
+                label = h4("Date Input"),
+                value = "2017-01-11"),
+      dateRangeInput("date",
+                     label = h4("Date Range")),
+      fileInput("file",
+                label = h4("File Input"))),
+    
+    mainPanel(h1("Main"),
+              img(src = "petal.jpg", height = 150, width = 200),
+              br(),
+              br(),
+              p("This famous (Fisher’s or Anderson’s)",a("iris", href="http://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html"),"data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are ",strong("Iris setosa"), strong("versicolor"),"and", strong("virginica.")),
+              br(),
+              h2("Analysis")
+    )
+  )
+  
+))
 
