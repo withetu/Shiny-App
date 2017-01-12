@@ -193,6 +193,71 @@
 
 #Now use column function in order to decide the column width for every row and put the two widgets in the same line. To do this place the column function twice. Firstly place it just before the “Actionbutton” title with width = 6 and close its parenthesis exactly after the label “Perform”. Do the same for the helpInput. Both of the column functions must be inside the same fluidrow.
 
+#NUMERIC INPUT
+#In the example below we create a UI with a numericInput.
+# ui.R
+#shinyUI(fluidPage(
+#titlePanel("Widgets"),
+#numericInput("num",
+#label = h3("Numeric Input"),
+#value = 1)
+#))
+# server.R
+#shinyServer(function(input, output) {
+#})
+
+#Put a numericInput under helpText,in the same row with submitButton. Name it “numer”, give it “Numeric Input” as label and value = 10. Hint: Use h4, fluidrow and column.
+
+#RADIO BUTTONS
+#In the example below we create a UI with a radioButtons.
+#ui.R
+#shinyUI(fluidPage(
+#titlePanel("Widgets"),
+#radioButtons("radio", label = h3("Radio buttons"),
+#choices = list("Choice 1" = 1, "Choice 2" = 2,
+#"Choice 3" = 3),selected = 1)
+#))
+#server.R
+#shinyServer(function(input, output) {
+#})
+
+#Add radioButtons under numericInput, in the same row with checkBoxInput. Name it “radiobuttons”, put as label “Radio Buttons” and give it two choices with no default. Hint: Use h4, fluidrow, column and choices.
+
+#Now put “2” as the default of the choices. Hint: Use selected.
+
+#SELECT INPUT
+#In the example below we create a UI with a selectInput.
+# ui.R
+#shinyUI(fluidPage(
+#titlePanel("Widgets"),
+#selectInput("select", label = h3("Select Box"),
+#choices = list("Choice 1" = 1, "Choice 2" = 2,
+#"Choice 3" = 3), selected = 1)
+#))
+#server.R
+#shinyServer(function(input, output) {
+#})
+
+#Place under radiobuttons and in the same row with checkBoxGroupInput a selectinput. Its name should be “select”, its label “Select Box” and you should give it two choices with the second one as default. Hint: Use h4, fluidrow, column, choices and selected.
+
+#SLIDER INPUT
+#In the example below we create a UI with two sliderInput.
+# ui.R
+#shinyUI(fluidPage(
+#titlePanel("Widgets"),
+#sliderInput("slider1", label = h3("Sliders"),
+#min = 0, max = 10, value = 5),
+#sliderInput("slider2", "",
+#min = 0, max = 10, value = c(3, 7))
+#))
+#server.R
+#shinyServer(function(input, output) {
+#})
+
+#Under the selectInput and in the same row with the dateInput place a sliderInput with name = slider1, label = “Sliders”, min = 0, max = 100 and value =50. Hint: Use fluidrow, columns and h4.
+
+#Replace the value with a default range “10-90” and see the difference.
+
 library(shiny)
 shinyUI(fluidPage(
   titlePanel("Shiny App"),
@@ -209,20 +274,44 @@ shinyUI(fluidPage(
         h4("Help Text"),
         helpText("Just For Help"))),
       br(),
-      h4("SubmitButton"),
-      submitButton("Submit"),
-      br(),
+      fluidRow(
+        column(6,
+        h4("SubmitButton"),
+        submitButton("Submit")),
+        column(6,
+               numericInput("numer",
+                            label = h4("Numeric Input"),
+                            value = 10))),
+      fluidRow(
+        column(6,
       h4("Single Checkbox"),
-      checkboxInput("checkbox", label = "Choice A", value = TRUE),
+      checkboxInput("checkbox", label = "Choice A", value = TRUE)),
+      column(6,
+             radioButtons("radiobuttons", label = h4("Radio Buttons"),
+                          choices = list("Choice 1"=1,
+                                         "Choice 2"=2,
+                                         "Choice 3"=3),
+                          selected=2))),
+      fluidRow(
+        column(6, 
       checkboxGroupInput("checkGroup",
                          label = h4("Checkbox Group"),
                          choices = list("Choice 1"=1,
                                         "Choice 2"=2,
                                         "Choice 3"=3),
-                         selected = 2),
+                         selected = 2)),
+      column(6,
+             selectInput("select", label = h4("Select Box"),
+                         choices = list("Choice 1"=1,
+                                        "Choice 2"=2),
+                         selected = 1))),
+      fluidRow(
+        column(6,
       dateInput("date", 
                 label = h4("Date Input"),
-                value = "2017-01-11"),
+                value = "2017-01-11")),
+      column(6,
+             sliderInput("slider1", label = h4("Sliders"), min = 0, max = 100, value = c(10,90))),
       dateRangeInput("date",
                      label = h4("Date Range")),
       fileInput("file",
@@ -239,19 +328,4 @@ shinyUI(fluidPage(
   )
   
 ))
-
-#NUMERIC INPUT
-#In the example below we create a UI with a numericInput.
-# ui.R
-#shinyUI(fluidPage(
-#titlePanel("Widgets"),
-#numericInput("num",
-#label = h3("Numeric Input"),
-#value = 1)
-#))
-# server.R
-#shinyServer(function(input, output) {
-#})
-
-#Put a numericInput under helpText,in the same row with submitButton. Name it “numer”, give it “Numeric Input” as label and value = 10. Hint: Use h4, fluidrow and column.
 
