@@ -1,6 +1,8 @@
 ##               http://r-exercises.com/2016/12/12/building-shiny-app-exercises-part-1/
 ##               http://r-exercises.com/2016/12/18/building-shiny-app-exercises-part-2/
 ##               http://r-exercises.com/2016/12/25/building-shiny-app-exercises-part-3/
+##               http://r-exercises.com/2017/01/01/building-shiny-app-exercises-part-4/
+
 
 
 ## You can run a Shiny app by giving the name of its directory to the function runApp(). For example if your Shiny app is in a directory called “Shiny App”, run it with the following code:
@@ -336,7 +338,8 @@ shinyUI(fluidPage(
               br(),
               p("This famous (Fisher's or Anderson's) ", a("iris",href="http://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html"), "data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are ",strong( "Iris setosa,"),strong( "versicolor"), "and", strong("virginica.")),
               br(),
-              h2("Analysis")
+              h2("Analysis"),
+              tabsetPanel(type = "tabs", tabPanel("Data Table", dataTableOutput("Table")), tabPanel("Summary"))
               
     )
   )

@@ -1,0 +1,66 @@
+Exp Aus Alu 2016
+
+Top Importing Countries
+2016, in Tonnes
+
+Tonnes
+
+Month
+<chr>
+
+Import_Country
+<fctr>
+
+Import_Continent
+<fctr>
+
+US_Dollar_Value
+<dbl>
+
+Tonnes
+<dbl>
+
+Data_Type
+<chr>
+
+Year
+<fctr>
+
+lon
+<dbl>
+
+lat
+<dbl>
+
+"Month"            "Import_Country"   "Import_Continent" "US_Dollar_Value"  "Tonnes"          
+ [6] "Data_Type"        "Year"             "lon"              "lat"              "rank" 
+
+rank, year, continent, economy, port, port_label, lon, lat, volume
+rank, Year, Import_Country, Import_Continent, US_Dollar_Value, Tonnes, lon, lat, Data_Type, Month
+
+
+
+rank
+<int>
+year
+<fctr>
+continent
+<fctr>
+economy
+<fctr>
+port
+<fctr>
+port_label
+<fctr>
+lon
+<dbl>
+lat
+<dbl>
+volume
+<dbl>
+1	2014	Asia	China	Shanghai	Shanghai	121.4737	31.230416	35268
+2	2014	Asia	Singapore	Singapore	Singapore	103.8198	1.352083	33869
+3	2014	Asia	China	Shenzhen	Shenzhen	114.0579	22.543096	23798
+4	2014	Asia	China	Hong Kong	Hong Kong	114.1095	22.396428	22374
+5	2014	Asia	China	Ningbo-Zhoushan	Ningbo/Z-shan	121.9880	29.901620	19450
+6	2014	Asia	South Korea	Busan	Busan	129.0756	35.179554	18423

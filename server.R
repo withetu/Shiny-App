@@ -1,6 +1,8 @@
 ##               http://r-exercises.com/2016/12/12/building-shiny-app-exercises-part-1/
 ##               http://r-exercises.com/2016/12/18/building-shiny-app-exercises-part-2/
 ##               http://r-exercises.com/2016/12/25/building-shiny-app-exercises-part-3/
+##               http://r-exercises.com/2017/01/01/building-shiny-app-exercises-part-4/
+
 
 
 ## You can run a Shiny app by giving the name of its directory to the function runApp(). For example if your Shiny app is in a directory called “Shiny App”, run it with the following code:
@@ -10,7 +12,7 @@
 
 #Create an empty app with a blank user-interface.
 shinyServer(function(input, output){
-  
+  output$Table <- renderDataTable(iris, options = list(pageLength=10, lengthMenu = list(c(10, 20, 30, -1), c('10','20','30','ALL'))))
 })
 
 
