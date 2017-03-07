@@ -11,9 +11,22 @@
 ## Or by just clicking the “Run App” button at the top of the editor which is the safest solution.
 
 #Create an empty app with a blank user-interface.
-shinyServer(function(input, output){
-  output$Table <- renderDataTable(iris, options = list(pageLength=10, lengthMenu = list(c(10, 20, 30, -1), c('10','20','30','ALL'))))
+shinyServer(function(input, output) {
+  output$Table <- renderDataTable(
+    iris,options = list(
+      lengthMenu = list(c(10, 20, 30,-1),c('10','20','30','ALL')),
+      pageLength = 10))
+  output$Image <- renderImage({
+    filename <- normalizePath(file.path('./images',
+                                        paste('pic', input$radio, '.png', sep='')))
+    list(src = filename,
+         width=300,
+         height=200)
+    
+    
+  },deleteFile = FALSE)
+  output$text1 <- renderPrint({
+    paste("You have selected", input$slider1,"clusters")
+  })
 })
-
-
 

@@ -2,6 +2,8 @@
 ##               http://r-exercises.com/2016/12/18/building-shiny-app-exercises-part-2/
 ##               http://r-exercises.com/2016/12/25/building-shiny-app-exercises-part-3/
 ##               http://r-exercises.com/2017/01/01/building-shiny-app-exercises-part-4/
+##               http://r-exercises.com/2017/01/24/building-shiny-app-exercises-part-5/
+
 
 
 
@@ -292,20 +294,13 @@ shinyUI(fluidPage(
                  br(),
                  fluidRow(
                    column(6,
-                          h4("Submitbutton"),
-                          submitButton("Submit")),
-                   column(6,
                           numericInput("numer",
                                        label = h4("Numeric Input"),
                                        value = 10))),
                  fluidRow(
                    column(6,
                           h4("Single Checkbox"),
-                          checkboxInput("checkbox", label = "Choice A", value = TRUE)),
-                   column(6,
-                          radioButtons("radio", label = h4("Radio Buttons"),
-                                       choices = list("Choice 1" = 1, "Choice 2" = 2),
-                                       selected = 2))),
+                          checkboxInput("checkbox", label = "Choice A", value = TRUE))),
                  fluidRow(
                    column(6,
                           checkboxGroupInput("checkGroup",
@@ -323,14 +318,14 @@ shinyUI(fluidPage(
                           dateInput("date",
                                     label = h4("Date input"),
                                     value = "2016-12-01")),
-                   column(6,
-                          sliderInput("slider1", label = h4("Sliders"),
-                                      min = 0, max = 100, value = c(10,90)))),
+                   column(6
+                   )),
                  fluidRow(
                    column(6,
-                 dateRangeInput("dates", label = h4("Date Range"))),
-                 column(6,
-                        textInput("text", label = h4("Text Input"), value = "Some Text"))),
+                          dateRangeInput("dates", label = h4("Date Range"))),
+                   column(6,
+                          textInput("text", label = h4("Text Input"),
+                                    value = "Some Text"))),
                  fileInput("file", label = h4("File Input"))),
     mainPanel(h1("Main"),
               img(src = "petal.jpg", height = 150, width = 200),
@@ -339,12 +334,20 @@ shinyUI(fluidPage(
               p("This famous (Fisher's or Anderson's) ", a("iris",href="http://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html"), "data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are ",strong( "Iris setosa,"),strong( "versicolor"), "and", strong("virginica.")),
               br(),
               h2("Analysis"),
-              tabsetPanel(type = "tabs", tabPanel("Data Table", dataTableOutput("Table")), tabPanel("Summary"))
+              tabsetPanel(type="tabs",tabPanel("Data Table",dataTableOutput("Table")),
+                          tabPanel("Summary"),
+                          tabPanel("K means",
+                                   radioButtons("radio", label = h4("Select Image"),
+                                                choices = list("Choice 1" = 1, "Choice 2" = 2),
+                                                selected = 1), imageOutput("Image"),
+                                   sliderInput("slider1", label = h4("Clusters"),
+                                               min = 3, max = 10, value = 3),
+                                   textOutput("text1"),
+                                   submitButton("Submit")))
               
     )
   )
 ))
-
 
 
 
