@@ -3,6 +3,7 @@
 ##               http://r-exercises.com/2016/12/25/building-shiny-app-exercises-part-3/
 ##               http://r-exercises.com/2017/01/01/building-shiny-app-exercises-part-4/
 ##               http://r-exercises.com/2017/01/24/building-shiny-app-exercises-part-5/
+##               http://r-exercises.com/2017/02/07/building-shiny-app-exercises-part-6/
 
 
 
@@ -335,15 +336,11 @@ shinyUI(fluidPage(
               br(),
               h2("Analysis"),
               tabsetPanel(type="tabs",tabPanel("Data Table",dataTableOutput("Table")),
-                          tabPanel("Summary"),
+                          tabPanel("Summary",dataTableOutput("Table2")),
                           tabPanel("K means",
-                                   radioButtons("radio", label = h4("Select Image"),
-                                                choices = list("Choice 1" = 1, "Choice 2" = 2),
-                                                selected = 1), imageOutput("Image"),
-                                   sliderInput("slider1", label = h4("Clusters"),
-                                               min = 3, max = 10, value = 3),
-                                   textOutput("text1"),
-                                   submitButton("Submit")))
+                                   plotOutput("plot1",click = "mouse"),
+                                   verbatimTextOutput("coord"),
+                                   uiOutput("All")))
               
     )
   )
