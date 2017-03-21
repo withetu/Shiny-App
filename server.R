@@ -4,6 +4,8 @@
 ##               http://r-exercises.com/2017/01/01/building-shiny-app-exercises-part-4/
 ##               http://r-exercises.com/2017/01/24/building-shiny-app-exercises-part-5/
 ##               http://r-exercises.com/2017/02/07/building-shiny-app-exercises-part-6/
+##               http://r-exercises.com/2017/02/19/building-shiny-app-exercises-part-7/
+
 
 
 
@@ -19,14 +21,14 @@ shinyServer(function(input, output) {
     iris,options = list(
       lengthMenu = list(c(10, 20, 30,-1),c('10','20','30','ALL')),
       pageLength = 10))
-  
-  output$text1 <- renderText({
-    paste("You have selected", input$slider1,"clusters")
-  })
   sumiris<-as.data.frame.array(summary(iris))
   output$Table2 <- renderDataTable(sumiris)
   output$plot1 <- renderPlot({
-    plot(iris$Petal.Length,iris$Petal.Width,main = "K-MEANS",xlab="Petal Length",ylab = "Petal Width",
+    palette(c("#E41A1C", "#377EB8", "#4DAF4A", "#984EA3",
+              "#FF7F00", "#FFFF33", "#A65628", "#F781BF", "#999999"))
+    plot(Data(),main = "K-MEANS",
+         col = Clusters()$cluster,
+         pch = 20, cex = 3,
          cex.main = 2,   font.main= 4, col.main= "blue")
   }, width = "auto",height = "auto")
   output$coord <- renderText({
@@ -34,12 +36,27 @@ shinyServer(function(input, output) {
   })
   output$All <- renderUI({
     tagList(
-      sliderInput("slider1", label = h4("Clusters"),
-                  min = 3, max = 10, value = 3),
-      textOutput("text1")
+      fluidRow(
+        column(4,
+               sliderInput("slider1", label = h4("Clusters"),
+                           min = 1, max = 9, value = 4)),
+        column(4,
+               checkboxGroupInput("checkGroup",
+                                  label = h4("Variable X"),names(iris),
+                                  selected=names(iris)[[2]]
+               )),
+        column(4,
+               selectInput("select", label = h4("Variable Y"),
+                           names(iris),selected=names(iris)[[2]]
+               )))
+      
       
     )
   })
+  Data <- reactive({iris[, c(input$select,input$checkGroup)]
+  })
+  Clusters <- reactive({
+    kmeans(Data(),input$slider1)
+  })
 })
-
 

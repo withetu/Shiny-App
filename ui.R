@@ -4,6 +4,8 @@
 ##               http://r-exercises.com/2017/01/01/building-shiny-app-exercises-part-4/
 ##               http://r-exercises.com/2017/01/24/building-shiny-app-exercises-part-5/
 ##               http://r-exercises.com/2017/02/07/building-shiny-app-exercises-part-6/
+##               http://r-exercises.com/2017/02/19/building-shiny-app-exercises-part-7/
+
 
 
 
@@ -287,9 +289,6 @@ shinyUI(fluidPage(
                  br(),
                  fluidRow(
                    column(6,
-                          h4("Actionbutton"),
-                          actionButton("per", label = "Perform")),
-                   column(6,
                           h4("Help Text"),
                           helpText("Just for help"))),
                  br(),
@@ -302,18 +301,6 @@ shinyUI(fluidPage(
                    column(6,
                           h4("Single Checkbox"),
                           checkboxInput("checkbox", label = "Choice A", value = TRUE))),
-                 fluidRow(
-                   column(6,
-                          checkboxGroupInput("checkGroup",
-                                             label = h4("Checkbox group"),
-                                             choices = list("Choice 1" = 1,
-                                                            "Choice 2" = 2, "Choice 3" = 3),
-                                             selected = 2)),
-                   
-                   column(6,
-                          selectInput("select", label = h4("Select Box"),
-                                      choices = list("Choice 1" = 1, "Choice 2" = 2
-                                      ), selected = 1))),
                  fluidRow(
                    column(6,
                           dateInput("date",
